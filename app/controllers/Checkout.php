@@ -146,7 +146,7 @@ class Checkout extends Controller
             'product_id' => $product[0]->product_id,
             'name' => $product[0]->name,
             'description' => $product[0]->description,
-            'price' => $product[0]->price,
+            'price' => $bulkOrderReq[0]->price_per_unit,
             'quantity' => $bulkOrderReq[0]->quantity,
             'selected' => 1,
             'image_url' => $product_image['image_url'],

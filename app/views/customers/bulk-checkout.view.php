@@ -315,7 +315,7 @@
 <body>
     <?php $this->view('includes/header', $data) ?>
     <header>
-        <?php $this->view('includes/nav', $data) ?>
+        <?php $this->view('customers/acc-nav', $data) ?>
     </header>
 
     <div class="contentcheckout">

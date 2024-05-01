@@ -185,6 +185,7 @@ $available_workers_count = count($available_workers);
 </form>
 
 <script>
+    
     let product_id = document.getElementById('product_id').value;
     // if nop in session storage
     if (sessionStorage.getItem('nop') && product_id) {
@@ -408,6 +409,14 @@ $available_workers_count = count($available_workers);
         sessionStorage.removeItem('product_id');
         sessionStorage.removeItem('quantity');
     }
+    document.getElementById('nocar').addEventListener('input', function() {
+        const nocar = document.getElementById('nocar').value;
+        if (nocar == 0) {
+            document.querySelector('.submit-btn').setAttribute('disabled', 'true');
+        } else {
+            document.querySelector('.submit-btn').removeAttribute('disabled');
+        }
+    });
 </script>
 
 

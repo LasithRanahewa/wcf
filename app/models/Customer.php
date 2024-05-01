@@ -188,7 +188,8 @@ class Customer extends Model
     {
         $query = "SELECT od.order_details_id, od.created_at, od.total, od.updated_at, od.status, od.delivery_cost,
 						a.address_line_1, a.address_line_2, a.city,
-						c.first_name, c.last_name, c.telephone
+						c.first_name, c.last_name, c.telephone,
+                        (od.total + od.delivery_cost) AS total_cost
 					FROM order_details od
 					LEFT JOIN customer c ON od.user_id = c.user_id
 					LEFT JOIN address a ON c.address_id = a.address_id
@@ -217,9 +218,9 @@ class Customer extends Model
         $result = $db->query($query, $params, PDO::FETCH_ASSOC);
 
         // Calculate subtotal for each order item
-        foreach ($result as &$item) {
-            $item['subtotal'] = $item['quantity'] * $item['price'];
-        }
+        // foreach ($result as &$item) {
+        //     $item['total_cost'] = $item['total'] + $item['deliver_cost'];
+        // }
 
         return $result;
     }
@@ -379,7 +380,7 @@ class Customer extends Model
                          c.first_name, c.last_name, c.telephone,
                          a.address_line_1, a.address_line_2, a.city,
                          br.quantity, 
-                         (br.quantity * p.price) AS subtotal
+                         (bod.total_cost + bod.delivery_cost) AS total
                   FROM bulk_order_details bod
                   LEFT JOIN bulk_order_req br ON bod.bulk_req_id = br.bulk_req_id
                   LEFT JOIN product p ON br.product_id = p.product_id

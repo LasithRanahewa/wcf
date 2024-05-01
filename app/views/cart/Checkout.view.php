@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
+    <!-- <title>Checkout Page</title> -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
@@ -55,16 +55,14 @@
 
         .summary {
             width: 25%;
-  border: 1px solid #EEEEEE;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: .5rem;
-  margin-left:3%;
-  margin-right: 15%;
-  height: 50%;
-  background-color: #F5F5F5;
- 
-
+            border: 1px solid #EEEEEE;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: .5rem;
+            margin-left:3%;
+            margin-right: 15%;
+            height: 50%;
+            background-color: #F5F5F5;
         }
 
         .delivery-option {
@@ -315,8 +313,7 @@
 
     <?php $this->view('includes/header', $data) ?>
     <header>
-        <?php $this->view('includes/nav', $data) ?>
-        <?php $this->view('webstore/header-section', $data) ?>
+        <?php $this->view('customers/acc-nav', $data) ?>
     </header>
 
     <div class="contentcheckout">

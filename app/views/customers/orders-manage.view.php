@@ -217,7 +217,7 @@
                         <p>Order <strong style="color: var(--green2);"><?= $details['order_details_id']; ?></strong></p>
                         <p><small>Placed on <?= $details['created_at']; ?></small></p>
                     </div>
-                    <p>Total: Rs.<?= $details['total']; ?></p>
+                    <p>Total: Rs.<?= $details['total_cost']; ?></p>
                 </div>
 
                 <div class="content-manage-detail">
@@ -251,10 +251,10 @@
                     <div class="content-manage-payment-right">
                         <h3>Total Summary</h3><br>
                         <div class="right-lower">
-                            <h2 id="subtotal">Subtotal<span>Rs. <?= $data['total_subtotal']; ?></span></h2>
+                            <h2 id="subtotal">Subtotal<span>Rs. <?= $details['total']; ?></span></h2>
                             <h2 id="delivery">Delivery<span>Rs. <?= $details['delivery_cost']; ?></span></h2>
                             <hr>
-                            <h2 id="total">Total<large><span>Rs. <?= $details['total']; ?></span></large></h2>
+                            <h2 id="total">Total<large><span>Rs. <?= $details['total_cost']; ?></span></large></h2>
                         </div>
                     </div>
                 </div>

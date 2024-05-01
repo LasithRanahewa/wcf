@@ -182,16 +182,27 @@
 
                     let actionCell = row.insertCell();
 
-                    if (item.bulk_req.quantity <= item.bulk_req.quantity_available) {
+                    if (item.bulk_req.quantity <= item.bulk_req.quantity_available && item.status == 'pending') {
                         let actionBtn = document.createElement('a');
                         actionBtn.textContent = 'Update Status';
                         actionBtn.classList.add('table-section__button');
                         // actionBtn.classList.add('submit-btn');
                         actionBtn.onclick = function() {
-                            openPopup(item.bulk_order_details_id, item.status, 'delivery', item.bulk_req.product_name, item.bulk_req.quantity, item.bulk_req.product_inventory_id);
+                            openPopup(item.bulk_order_details_id, item.status, 'pickup', item.bulk_req.product_name, item.bulk_req.quantity, item.bulk_req.product_inventory_id);
                         }
                         actionCell.appendChild(actionBtn);
-                    } else {
+                    
+                    } else if ( item.status == 'processing' || item.status == 'ready to pick up') {
+                        let actionBtn = document.createElement('a');
+                        actionBtn.textContent = 'Update Status';
+                        actionBtn.classList.add('table-section__button');
+                        // actionBtn.classList.add('submit-btn');
+                        actionBtn.onclick = function() {
+                            openPopup(item.bulk_order_details_id, item.status, 'pickup', item.bulk_req.product_name, item.bulk_req.quantity, item.bulk_req.product_inventory_id);
+                        }
+                        actionCell.appendChild(actionBtn);
+                    }
+                    else {
                         let actionBtn = document.createElement('a');
                         actionBtn.textContent = 'Products Unavailable';
                         actionBtn.classList.add('table-section__button-unavailable');
@@ -226,7 +237,7 @@
 
                     let actionCell = row.insertCell();
 
-                    if (item.bulk_req.quantity <= item.bulk_req.quantity_available) {
+                    if (item.bulk_req.quantity <= item.bulk_req.quantity_available && item.status == 'pending') {
                         let actionBtn = document.createElement('a');
                         actionBtn.textContent = 'Update Status';
                         actionBtn.classList.add('table-section__button');
@@ -235,7 +246,18 @@
                             openPopup(item.bulk_order_details_id, item.status, 'delivery', item.bulk_req.product_name, item.bulk_req.quantity, item.bulk_req.product_inventory_id);
                         }
                         actionCell.appendChild(actionBtn);
-                    } else {
+                    
+                    } else if ( item.status == 'processing'|| item.status == 'delivering') {
+                        let actionBtn = document.createElement('a');
+                        actionBtn.textContent = 'Update Status';
+                        actionBtn.classList.add('table-section__button');
+                        // actionBtn.classList.add('submit-btn');
+                        actionBtn.onclick = function() {
+                            openPopup(item.bulk_order_details_id, item.status, 'delivery', item.bulk_req.product_name, item.bulk_req.quantity, item.bulk_req.product_inventory_id);
+                        }
+                        actionCell.appendChild(actionBtn);
+                    }
+                     else {
                         let actionBtn = document.createElement('a');
                         actionBtn.textContent = 'Products Unavailable';
                         actionBtn.classList.add('table-section__button-unavailable');

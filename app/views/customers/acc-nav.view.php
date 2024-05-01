@@ -1,4 +1,4 @@
-<?php 
+<?php
 $cartItemCount = 0; // logic to get the count of items in the cart;
 $cartItemCount = $_SESSION['cart']->cart_item_count;
 ?>
@@ -46,7 +46,7 @@ $cartItemCount = $_SESSION['cart']->cart_item_count;
   }
 
   .nav__item {
-    margin: 10px 15px;
+    margin: 10px 25px;
   }
 
   .nav__name {
@@ -89,30 +89,44 @@ $cartItemCount = $_SESSION['cart']->cart_item_count;
   /* Media Queries */
   @media screen and (min-width: 750px) {
     .nav__link .nav__icon {
-      display: none; /* Hide icons */
+      display: none;
+      /* Hide icons */
     }
 
     .nav__name {
-      display: block; /* Display navigation names */
+      display: block;
+      /* Display navigation names */
     }
   }
 
   @media screen and (max-width: 751px) {
     .nav__link .nav__icon {
-      display: flex; /* Display icons */
+      display: flex;
+      /* Display icons */
     }
 
     .nav__name {
-      display: none; /* Hide navigation names */
+      display: none;
+      /* Hide navigation names */
     }
   }
 
+  .navl-cont {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .navl-cont:hover .navi__logo {
+    color: var(--first-color);
+  }
 </style>
 
 <header class="header" id="header">
-  <nav class="nav container"> 
+  <nav style="width:100%" class="nav container">
     <div class="navl-cont">
-      <img src="<?php echo ROOT ?>/assets/images/Logo_green.png">
+      <!-- <img src="<?php echo ROOT ?>/assets/images/Logo_green.png"> -->
+      <a href="<?= ROOT ?>" class="naiv_logo material-icons-outlined" style="font-size: 30px; font-weight: 400; color: var(--primary);"> living </a> <a class="navi_logo" style=" font-weight: 600;padding-left: 5px ;color: var(--primary);"> WoodCraft Furnitures </a>
     </div>
 
     <div class="nav__menu" id="nav-menu">
@@ -120,7 +134,7 @@ $cartItemCount = $_SESSION['cart']->cart_item_count;
         <li class="nav__item">
           <a href="<?php echo ROOT ?>" class="nav__link active-link">
             <span class="material-symbols-outlined nav__icon">
-                home
+              home
             </span>
             <span class="nav__name">Home</span>
           </a>
@@ -129,66 +143,66 @@ $cartItemCount = $_SESSION['cart']->cart_item_count;
         <li class="nav__item">
           <a href="<?= ROOT ?>" class="nav__link">
             <span class="material-symbols-outlined nav__icon">
-                storefront
+              chair
             </span>
-            <span class="nav__name">Shop</span>
+            <span class="nav__name">Products</span>
           </a>
         </li>
 
         <li class="nav__item">
-          <a href="<?php echo ROOT ?>/about" class="nav__link">
+          <a href="<?php echo ROOT ?>/orders" class="nav__link">
             <span class="material-symbols-outlined nav__icon">
-                    info
+              package
             </span>
-            <span class="nav__name">About Us</span>
+            <span class="nav__name">Orders</span>
           </a>
         </li>
 
         <li class="nav__item">
           <a href="<?php echo ROOT ?>/cart" class="nav__link">
-            <span class="material-symbols-outlined nav__icon">shopping_cart <span class="cart-count"><?php echo $cartItemCount ?></span></span>
-            <span class="nav__name">Cart <span class="cart-count"><?php echo $cartItemCount ?></span>
+            <span class="material-symbols-outlined nav__icon">shopping_cart</span>
+            <span class="nav__name">Cart</span>
           </a>
         </li>
 
-        <?php if(!Auth::logged_in()):?>    
+        <?php if (!Auth::logged_in()) : ?>
           <li class="nav__item">
             <a href="<?php echo ROOT ?>/login" class="nav__link">
-                <span class="material-symbols-outlined nav__icon">
-                    login
-                </span>
+              <span class="material-symbols-outlined nav__icon">
+                login
+              </span>
               <span class="nav__name">Log In</span>
             </a>
           </li>
 
           <li class="nav__item">
             <a href="<?php echo ROOT ?>/logout" class="nav__link">
-                <span class="material-symbols-outlined nav__icon">
-                    person_add
-                </span>
+              <span class="material-symbols-outlined nav__icon">
+                person_add
+              </span>
               <span class="nav__name">Sign Up</span>
             </a>
           </li>
 
-        <?php else:?>
+        <?php else : ?>
           <li class="nav__item">
             <a href="<?php echo ROOT ?>/profile" class="nav__link">
-                <span class="material-symbols-outlined nav__icon">
-                    account_circle
-                </span>
-              <span class="nav__name">Hi! <?=Auth::getCustomerName()?></span>
+              <span class="material-symbols-outlined nav__icon">
+                account_circle
+              </span>
+              <span class="nav__name">Profile</span>
             </a>
           </li>
 
           <li class="nav__item">
             <a href="<?php echo ROOT ?>/logout" class="nav__link">
-                <span class="material-symbols-outlined nav__icon">
-                    logout
-                </span>
+              <span class="material-symbols-outlined nav__icon">
+                logout
+              </span>
               <span class="nav__name">Log out</span>
             </a>
           </li>
-        <?php endif;?>
+        <?php endif; ?>
       </ul>
     </div>
   </nav>
@@ -229,9 +243,9 @@ $cartItemCount = $_SESSION['cart']->cart_item_count;
       case 'tologin':
         window.location.href = '<?= ROOT ?>/login';
         break;
-      // case 'tologout':
-      //     window.location.href = '<?= ROOT ?>/logout';
-      //     break;
+        // case 'tologout':
+        //     window.location.href = '<?= ROOT ?>/logout';
+        //     break;
       case 'toorders':
         window.location.href = '<?= ROOT ?>/orders';
         break;
@@ -241,9 +255,9 @@ $cartItemCount = $_SESSION['cart']->cart_item_count;
       case 'toreviews':
         window.location.href = '<?= ROOT ?>/review';
         break;
-      // case 'toreturns':
-      //     window.location.href = '<?= ROOT ?>/profile/returns';
-      //     break;
+        // case 'toreturns':
+        //     window.location.href = '<?= ROOT ?>/profile/returns';
+        //     break;
       default:
         break;
     }

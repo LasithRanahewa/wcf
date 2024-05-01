@@ -35,32 +35,34 @@ usort($pxn_blks, function ($a, $b) {
             </thead>
             <tbody id="table-section__tbody">
                 <?php foreach ($pxn_blks as $pxn_blk) : ?>
-                    <tr>
-                        <td><?= $pxn_blk['bulk_order_details_id'] ?></td>
-                        <td><?= 'PRD-' . str_pad($pxn_blk['bulk_req']['product_id'], 3, '0', STR_PAD_LEFT) ?></td>
-                        <td><?= $pxn_blk['bulk_req']['product_name'] ?></td>
-                        <td><?= $pxn_blk['bulk_req']['quantity_available'] . ' / ' . $pxn_blk['bulk_req']['quantity'] ?></td>
-                        <td>
-                            <?php
-                            foreach ($pxn_blk['product_materials'] as $mat) {
-                                echo $mat['material_name'] . ' x ' . $mat['quantity_needed'] * $pxn_blk['bulk_req']['quantity']  . "<br>";
-                            }
-                            ?>
-                        </td>
-                        <!-- <td><?= $pxn_blk['created_at'] ?></td> -->
-                        <td><?= $pxn_blk['bulk_req']['estimated_date'] ?></td>
-                        <td>
-                            <?php
-                            if ($pxn_blk['missing_materials_count'] == 0) {
+                    <?php if ($pxn_blk['bulk_req']['quantity_available'] < $pxn_blk['bulk_req']['quantity']) : ?>
+                        <tr>
+                            <td><?= $pxn_blk['bulk_order_details_id'] ?></td>
+                            <td><?= 'PRD-' . str_pad($pxn_blk['bulk_req']['product_id'], 3, '0', STR_PAD_LEFT) ?></td>
+                            <td><?= $pxn_blk['bulk_req']['product_name'] ?></td>
+                            <td><?= $pxn_blk['bulk_req']['quantity_available'] . ' / ' . $pxn_blk['bulk_req']['quantity'] ?></td>
+                            <td>
+                                <?php
+                                foreach ($pxn_blk['product_materials'] as $mat) {
+                                    echo $mat['material_name'] . ' x ' . $mat['quantity_needed'] * $pxn_blk['bulk_req']['quantity']  . "<br>";
+                                }
+                                ?>
+                            </td>
+                            <!-- <td><?= $pxn_blk['created_at'] ?></td> -->
+                            <td><?= $pxn_blk['bulk_req']['estimated_date'] ?></td>
+                            <td>
+                                <?php
+                                if ($pxn_blk['missing_materials_count'] == 0) {
 
-                                $quantity_difference = $pxn_blk['bulk_req']['quantity'] - $pxn_blk['bulk_req']['quantity_available'];
-                                echo "<a class='table-section__button' onclick='navfunc(\"{$pxn_blk['bulk_req']['product_id']}\",\"{$quantity_difference}\")'>Start Production</a>";
-                            } else {
-                                echo "<a class='table-section__button table-section__button-del' onclick='openPopup(\"{$pxn_blk['bulk_order_details_id']}\")'>Missing Materials</a>";
-                            }
-                            ?>
-                        </td>
-                    </tr>
+                                    $quantity_difference = $pxn_blk['bulk_req']['quantity'] - $pxn_blk['bulk_req']['quantity_available'];
+                                    echo "<a class='table-section__button' onclick='navfunc(\"{$pxn_blk['bulk_req']['product_id']}\",\"{$quantity_difference}\")'>Start Production</a>";
+                                } else {
+                                    echo "<a class='table-section__button table-section__button-del' onclick='openPopup(\"{$pxn_blk['bulk_order_details_id']}\")'>Missing Materials</a>";
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
 
             </tbody>

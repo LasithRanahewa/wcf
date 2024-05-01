@@ -2,13 +2,16 @@
 
 <head>
   <link rel="stylesheet" href="<?php echo ROOT; ?>/assets/css/cart.css">
-  <?php $this->view('includes/nav', $data) ?>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 
 <body>
+<?php $this->view('includes/header', $data) ?>
+    <header>
+        <?php $this->view('customers/acc-nav', $data) ?>
+    </header>
 
   <div class="container-cart">
     <div class="cart">
@@ -20,7 +23,6 @@
       <?php
 
       $subtotal = 0;
-      $discount = 0;
       $total = 0;
       $delivery = 15;
 
@@ -39,7 +41,6 @@
       // show($cart);
       
       $subtotal = $cart[0]->sub_total;
-      $discount = 0;
       $total = $cart[0]->total;
       $delivery = $cart[0]->delivery_cost;
 
@@ -199,10 +200,6 @@
       </div>
       <div class="detail">
         <h2 id="subtotal">Subtotal<span>RS.<?php echo number_format($subtotal, 2); ?></span></h2>
-        <h2 id="discount">Discount(-20%)<span>-RS.<?php echo number_format($discount, 2); ?></span></h2>
-        <h2 id="delivery">Delivery<span>RS.<?php echo number_format($delivery, 2); ?></span></h2>
-        <hr>
-        <h2 id="total">Total<span>RS.<?php echo number_format($total, 2); ?></span></h2>
       </div>
       <!-- <div class="promo">
         <div class="promocode">
@@ -515,6 +512,7 @@
                 $('#loader').hide();
                 $('.alert').show();
                 $('#result').html(response);
+                window.location.reload();
             });
         }
 
@@ -533,6 +531,7 @@
                 $('#loader').hide();
                 $('.alert').show();
                 $('#result').html(response);
+                window.location.reload();
             });
         }
     });
@@ -559,9 +558,11 @@
                 $('#loader').hide();
                 $('.alert').show();
                 $('#result').html(response);
+                window.location.reload();
             },
             error: function (xhr, status, error) {
                 console.error(error);
+                window.location.reload();
             }
         });
     }

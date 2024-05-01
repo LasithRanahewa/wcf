@@ -17,8 +17,8 @@ class MailService
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'woodcraftfurnitureslk@gmail.com';
-            $mail->Password   = 'oama sezd yjhq zjnf';
+            $mail->Username   =  Email_USERNAME;
+            $mail->Password   =  Email_PASSWORD;
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 

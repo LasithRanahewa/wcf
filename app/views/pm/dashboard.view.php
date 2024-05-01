@@ -148,13 +148,13 @@ $bulk_count = file_get_contents($url3);
             <p class="card-text"><?= $nopxn_prc ?></p>
         </div>
     </a>
-    <a href="<?= ROOT . '/pm/approved_bulk_orders' ?>" style="text-decoration:none" onclick="navfunc('app_bulk-nav')">
+    <!-- <a href="<?= ROOT . '/pm/approved_bulk_orders' ?>" style="text-decoration:none" onclick="navfunc('app_bulk-nav')">
         <div class="card">
             <h3 class="card-title">Approved bulk orders</h3>
             <span class="material-icons-outlined card-icon">task_alt</span>
             <p class="card-text"><?=$bulk_count?></p>
         </div>
-    </a>
+    </a> -->
 
 
 
